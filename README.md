@@ -1,3 +1,3 @@
-# simple_timesheet
+# Simple Time Sheet
 
-Simple timesheet in Python and Django
+Simple Working Hours Time Sheet in Python and Django.
