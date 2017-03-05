@@ -1,1 +1,1 @@
-web: gunicorn simple_timesheet.wsgi --log-file -
+web: gunicorn simple_timesheet.wsgi:application --log-file -
