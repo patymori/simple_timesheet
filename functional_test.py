@@ -4,6 +4,7 @@ Functional test.
 Django TDD - init project
 """
 import unittest
+import time
 
 from selenium import webdriver
 
@@ -29,14 +30,19 @@ class NewVisitorTest(unittest.TestCase):
         # User can press a button to set the starting time in the time sheet
         button = self.browser.find_element_by_tag_name('button')
         self.assertEqual(button.get_attribute('type'), 'submit')
-        self.assertEqual(button.get_attribute('value'), 'Set Time')
+        self.assertEqual(button.text, 'Set Time')
 
         # When user press the button, the page updates, and now the page lists
-        # "Start time: "
+        # "Start time: <time>"
+        time_now = time.strftime('%H:%M', time.gmtime())
+        button.click()
+        time.sleep(1)
+
         table = self.browser.find_element_by_id('id_time_table')
         rows = table.find_elements_by_tag_name('th')
         self.assertTrue(
-            any(row.text == 'Start Time' for row in rows)
+            any(row.text == 'Start Time: {0}'.
+                format(time_now) for row in rows)
         )
 
         self.fail('Finish the test!')
