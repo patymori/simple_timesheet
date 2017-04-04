@@ -34,16 +34,15 @@ class NewVisitorTest(unittest.TestCase):
 
         # When user press the button, the page updates, and now the page lists
         # "Start time: <time>"
-        time_now = time.strftime('%H:%M', time.gmtime())
+        time_now = time.strftime('%H:%M')
         button.click()
         time.sleep(1)
 
         table = self.browser.find_element_by_id('id_time_table')
-        rows = table.find_elements_by_tag_name('th')
-        self.assertTrue(
-            any(row.text == 'Start Time: {0}'.
-                format(time_now) for row in rows)
-        )
+        table_head = table.find_elements_by_tag_name('th')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('Start Time', [thead.text for thead in table_head])
+        self.assertIn(time_now, [row.text for row in rows])
 
         self.fail('Finish the test!')
 

@@ -4,8 +4,17 @@
     </head>
     <body>
         <h1>Simple Time Sheet</h1>
-        <button>Set Time</button>
+        <form method="POST">
+            {% csrf_token %}
+            <button>Set Time</button>
+        </form>
         <table id="id_time_table">
+            <thead>
+                <th>Start Time</th>
+            </thead>
+            <tr>
+                <td>{{ start_time }}</td>
+            </tr>
         </table>
     </body>
 </html>
