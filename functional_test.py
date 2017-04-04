@@ -13,7 +13,7 @@ class NewVisitorTest(unittest.TestCase):
     # Initial test to open the browser in the first page
 
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
 
     def tearDown(self):
         self.browser.quit()
